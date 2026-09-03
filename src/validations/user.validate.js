@@ -6,10 +6,18 @@ const validateUser = [
         .notEmpty().withMessage("El nombre es obligatorio")
         .isLength({ min: 2 }).withMessage("El nombre debe tener al menos 2 caracteres")
         .isString().withMessage("El nombre debe ser una cadena de texto"),
+    body("age")
+        .trim()
+        .notEmpty().withMessage("La edad es obligatoria")
+        .isInt({ gt: 0 }).withMessage("La edad debe ser un número entero positivo"),
     body("email")
         .trim()
         .notEmpty().withMessage("El correo electrónico es obligatorio")
         .isEmail().withMessage("El correo electrónico no es válido"),
+    body("country")
+        .optional()
+        .trim()
+        .isString().withMessage("El país debe ser una cadena de texto"),
 ];
 
 const validateId = [

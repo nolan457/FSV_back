@@ -1,9 +1,9 @@
 import { generateId } from "../utils/generateID.js";
 
 let users = [
-    { id: 1, name: "John Doe", email: "john.doe@example.com" },
-    { id: 2, name: "Jane Smith", email: "jane.smith@example.com" },
-    { id: 3, name: "Alice Johnson", email: "alice.johnson@example.com" }
+    { id: 1, name: "John Doe",  age: 30, email: "john.doe@example.com", country: "United States" },
+    { id: 2, name: "Jane Smith",  age: 25, email: "jane.smith@example.com", country: "Argentina" },
+    { id: 3, name: "Alice Johnson",  age: 35, email: "alice.johnson@example.com", country: "Paraguay" }
 ];
 
 const getServiceAllUsers = () => {
@@ -11,7 +11,10 @@ const getServiceAllUsers = () => {
 };
 
 const createServiceUser = (userData) => {
-    const newUser = { id: generateId(users), ...userData };
+    const country = typeof userData.country === "string" && userData.country.trim()
+        ? userData.country.trim()
+        : "Desconocido";
+    const newUser = { id: generateId(users), ...userData, country };
     users.push(newUser);
     return newUser;
 };
