@@ -9,11 +9,12 @@ export async function connectDB() {
         }
         
         await mongoose.connect(`${env.MONGO_URI}`, {
-            serverSelectionTimeoutMS: 5000
+            serverSelectionTimeoutMS: 5000,
         });
-        console.log('MongoDB connected');
+        
+        console.log('✅ MongoDB connected');
     } catch (error) {
-        console.error('connection error with MongoDB:', error);
+        console.error('❌ connection error with MongoDB:', error);
         process.exit(1);
     }
 }
